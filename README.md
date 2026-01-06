@@ -35,6 +35,6 @@ A new tab will open in your default browser with the xpost app. Streamlit usuall
 `xpost` is ready to be deployed in the *[Streamlit Community Cloud](https://streamlit.io/cloud)* in the free tier. You can deploy directly from this Github repo. When creating the app in the community cloud, you must set up your secrets by means of the Community Cloud Secrets Management console.
 
 ## Credits
-- Thank you to some alternatives. I found that *[Typefully](https://typefully.com/)* is too expensive for my needs. I tried to install locally the free editions of *[Postiz](https://postiz.com/)* and *[Mixpost](https://mixpost.app/)* to realize that each take more than 1 Go space on my disk - too heavy for my needs.
+- Thank you to some alternatives. I found that *[Typefully](https://typefully.com/)* is too expensive for my needs. I tried to install locally the free editions of *[Postiz](https://postiz.com/)* and *[Mixpost](https://mixpost.app/)*, just to realize that each takes more than 1 Go space on my disk - too heavy for my needs.
 - Thank you to *[Grok](https://grok.com)* which, under my tight supervision, coded most of it.
 
