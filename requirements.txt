@@ -1,0 +1,7 @@
+# requirements.txt
+# Justification: Liste des dépendances du projet pour reproductibilité et découplage.
+# Versions pinnées loosely pour compatibilité, mais ajustables si besoin (ex. : pour fixes de bugs).
+
+tweepy>=4.0.0  # Pour l'API X, abstraction OAuth et posting – core pour les fonctions comme create_tweet.
+python-dotenv>=1.0.0  # Pour charger .env sécurément, découplant les secrets de l'env runtime.
+streamlit>=1.0.0  # Pour l'UI interactive, simple et déclarative sans framework heavy.

@@ -1,0 +1,22 @@
+# .gitignore
+
+# Sensitive files
+.streamlit/*
+
+# Python-specific
+uv.lock
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# OS-specific
+*/.DS_Store
+*/Thumbs.db

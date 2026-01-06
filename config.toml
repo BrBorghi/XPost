@@ -1,0 +1,5 @@
+[config]
+page_title = "xpost"
+textarea_max_chars = 280
+textarea_height = 100
+textarea_font_size = 16
