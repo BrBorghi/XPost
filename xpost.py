@@ -50,6 +50,7 @@ def load_config():
     return config
 
 
+
 def post_message(client, message):
     """
     Posts a simple message on X.
@@ -76,29 +77,41 @@ def extract_tweet_id_from_url(url):
             return tweet_id
     raise ValueError(f"Invalid URL or does not contain a valid post ID: {url}")
 
-
-def post_quote(client, message, quote_tweet_id_or_url):
+def format_quote_text(message: str, tweet_url: str) -> str:
     """
-    Posts a message that quotes another post on X.
-    quote may be the id of the mother post or the entire url of the post
+    Format message si that it includes the link to quoted post.
     """
-    # Detection and extraction if it's a URL
-    if quote_tweet_id_or_url.startswith("http"):
-        quote_tweet_id = extract_tweet_id_from_url(quote_tweet_id_or_url)
-    else:
-        quote_tweet_id = quote_tweet_id_or_url
+    # remove ending spaces
+    message = message.strip()
+    if not message:
+        return tweet_url  # When message is empty post the link
+    
+    return f"{message}\n\n🔗 {tweet_url}"
+    
+def post_quote(client, message, quote_tweet_url):
+    """
+    Posts a message that embeds a link to another post on X.
+    quoting a post is forbidden
+    """
 
-    if not isinstance(quote_tweet_id, str) or not quote_tweet_id.isdigit():
-        raise ValueError(
-            "quote_tweet_id must be a string representing a valid numeric ID."
-        )
-
+    if not quote_tweet_url or not quote_tweet_url.strip():
+        raise ValueError("Empty URL")
+    
+    # Validation rapide de l'URL (on garde ton extracteur pour vérifier)
     try:
-        response = client.create_tweet(text=message, quote_tweet_id=quote_tweet_id)
+        extract_tweet_id_from_url(quote_tweet_url)  # juste pour valider
+    except ValueError as e:
+        raise ValueError(f"Invalid URL : {e}")
+    
+    # Formatage du texte final
+    final_text = format_quote_text(message, quote_tweet_url)
+    
+    try:
+        response = client.create_tweet(text=final_text)
         return response
-    except tweepy.TweepyException:
-        raise
-
+    except tweepy.TweepyException as e:
+        raise Exception(f"Error : {e}")
+    
 
 def check_password():
     """Checks the entered password against the APP_PASSWORD define in the secrets. Returns True if OK."""
